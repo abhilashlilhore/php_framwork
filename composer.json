@@ -1,0 +1,18 @@
+{
+    "name": "admin/php-framwork",
+    "description": "this is simple php framwork to learn how framworks works",
+    "type": "framwork",
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
+    "authors": [
+        {
+            "name": "Abhilash Lilhore",
+            "email": "abhilash@savior.im"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
