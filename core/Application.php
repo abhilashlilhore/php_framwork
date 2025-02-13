@@ -29,14 +29,14 @@ class Application
 
     public Controller $controller;
 
-    function __construct($rootDir)
+    function __construct($rootDir, array $config)
     {
         self::$app = $this;
         self::$ROOT_DIR = $rootDir;
         $this->request = new Request();
         $this->responce = new Responce();
         $this->router = new Router($this->request);
-        $this->db= new Database();
+        $this->db= new Database($config['db']);
     }
 
     public function run()
