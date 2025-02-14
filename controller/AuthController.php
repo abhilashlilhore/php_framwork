@@ -5,7 +5,7 @@ namespace app\controller;
 
 use app\core\Controller;
 use app\core\Request;
-use app\models\RegisterModels;
+use app\models\User;
 
 class AuthController extends Controller
 {
@@ -25,13 +25,13 @@ class AuthController extends Controller
 
         $this->setLayout('auth');
 
-        $registerObj = new RegisterModels();
+        $registerObj = new User();
 
         if ($request->isPost()) {
             $registerObj->loadData($request->getBody());           
 
 
-            if ($registerObj->validate() && $registerObj->register()) {
+            if ($registerObj->validate() && $registerObj->save()) {
                 return 'success';
             } 
 
