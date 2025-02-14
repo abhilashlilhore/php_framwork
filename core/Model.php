@@ -12,6 +12,7 @@ abstract class Model
     public const RULE_MIN = 'min';
     public const RULE_MAX = 'max';
     public const RULE_MATCH = 'match';
+    public const RULE_UNIQUE = 'unique';
 
 
     public function loadData($data)
@@ -66,6 +67,27 @@ abstract class Model
                 //    'confirmpassword' => [self::RULE_REQUIRED, [self::RULE_MATCH, 'match' => 'password']]
                     $this->addError($attribute, self::RULE_MATCH,$rule );
                 }
+
+                if ($ruleName === self::RULE_UNIQUE ) {
+
+                    $className=$rule['class'];
+                    $tableName=$className::tableName();
+                    $uniqueAttribute=$rule['attrbute']??$attribute;
+
+                    $statement=Application::$app->db->prepare(" SELECT * FROM $tableName where $uniqueAttribute= :attr ");
+
+                    $statement->bindValue(':attr',$value);
+
+                    $statement->execute();
+                    $resultObject=$statement->fetchObject();
+                    if($resultObject){
+                        $this->addError($attribute, self::RULE_UNIQUE,['field'=>$attribute] );
+                    }                 
+                   
+                    
+                }
+
+
             }
         }
 
@@ -93,6 +115,7 @@ abstract class Model
             self::RULE_MIN => 'This field must be minimul length {min} ',
             self::RULE_MAX => 'This field max length {max} ',
             self::RULE_MATCH => 'This field confirm password not match with password',
+            self::RULE_UNIQUE => 'Record with this {field} already exist',
 
         ];
     }
