@@ -3,6 +3,7 @@
 
 namespace app\controller;
 
+use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
 use app\models\User;
@@ -32,7 +33,8 @@ class AuthController extends Controller
 
 
             if ($registerObj->validate() && $registerObj->save()) {
-                return 'success';
+                Application::$app->session->setFlash("success","Thank you for registering");
+                Application::$app->responce->redirect('/');
             } 
 
             return $this->render('register',['model'=>$registerObj]);

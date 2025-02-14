@@ -24,6 +24,7 @@ class Application
     public Responce $responce;
     public Request $request;
     public Database $db;
+    public Session $session;
 
     public static Application $app;
 
@@ -37,6 +38,7 @@ class Application
         $this->responce = new Responce();
         $this->router = new Router($this->request);
         $this->db= new Database($config['db']);
+        $this->session=new Session();
     }
 
     public function run()

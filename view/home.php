@@ -1,4 +1,15 @@
+<?php
+
+use app\core\Application; ?>
 <hr class="featurette-divider">
+
+
+<?php if (Application::$app->session->getFlashMessage('success')): ?>
+
+    <div class="alert alert-success alert-dismissible fade show">
+        <?php echo (Application::$app->session->getFlashMessage('success'));  ?>      
+    </div>
+<?php Application::$app->session->unsetMessage('success') ; endif ?>
 
 <div class="row featurette">
     <div class="col-md-7">
