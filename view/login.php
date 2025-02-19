@@ -1,20 +1,30 @@
 <!-- Three columns of text below the carousel -->
 <div class="row">
-    <div class="col-lg-6">
+    <div class="col-lg-12">
         <h1>Login</h1>
-        <form class="form-inline " method="post" action="/login" enctype="multipart/form-data">
-            <div class="form-group mb-2">
-                <label for="staticEmail2" class="sr-only">UserName</label>
-                <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="email@example.com">
+
+
+        <div class="row">
+            
+            <?php $form = \app\core\form\Form::formStart('/', 'post') ?>
+
+            <div class="col-lg-6">
+                <?php echo $form->field($model, 'email') ?>
             </div>
-            <div class="form-group mx-sm-3 mb-2">
-                <label for="inputPassword2" class="sr-only">UserName</label>
-                <input type="" class="form-control" id="inputPassword2" name="userName" placeholder="Password">
+            <div class="col-lg-6">
+                <?php echo $form->field($model, 'password')->passwordField() ?>
             </div>
-            <button type="submit" class="btn btn-primary mb-2">Confirm identity</button>
-        </form>
+            
+            <div class="col-lg-6">
+                <button type="submit" class="btn btn-primary mb-2">Confirm identity</button>
+            </div>
+
+
+            <?php echo \app\core\form\Form::formEnd() ?>
+        </div>
+
     </div>
-    <div class="col-lg-6"></div>
+   
     <br><br>
     <br><br>
     <div class="col-lg-4 mt-12" style="margin-top:40px;">

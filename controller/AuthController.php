@@ -15,10 +15,16 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+        $userModel=new User();
 
         $this->setLayout('auth');
 
-        return $this->render('login');
+        if($request->isPost()){
+
+            
+        }
+
+        return $this->render('login',['model'=>$userModel]);
     }
 
     public function register(Request $request)
